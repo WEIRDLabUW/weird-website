@@ -9,163 +9,10 @@
 </head>
 <body>
 
+<div id="pub-panel-container"></div>
+
 <div class="layout-three">
-  <aside class="pub-sidebar-left">
-    <h3>Selected Papers</h3>
-    <a href="https://arxiv.org/abs/2504.02792" class="pub-item">
-      <img src="images/projects/uwm.jpg" alt="">
-      <span class="pub-info">Unified World Models<span class="venue">RSS 2025 best paper</span></span>
-    </a>
-    <a href="https://arxiv.org/abs/2506.15799" class="pub-item">
-      <img src="images/projects/latent-rl.jpg" alt="">
-      <span class="pub-info">Steering Diffusion Policy<span class="venue">CoRL 2025 oral</span></span>
-    </a>
-    <a href="https://arxiv.org/abs/2506.18123" class="pub-item">
-      <img src="images/projects/roboarena.jpg" alt="">
-      <span class="pub-info">RoboArena<span class="venue">CoRL 2025 oral</span></span>
-    </a>
-    <a href="https://arxiv.org/abs/2503.04538" class="pub-item">
-      <img src="images/projects/srsa.jpg" alt="">
-      <span class="pub-info">SRSA: Skill Retrieval<span class="venue">ICLR 2025 spotlight</span></span>
-    </a>
-    <a href="https://arxiv.org/abs/2408.10075" class="pub-item">
-      <img src="images/projects/rlhf.jpg" alt="">
-      <span class="pub-info">Personalizing RLHF<span class="venue">NeurIPS 2024 spotlight</span></span>
-    </a>
-    <a href="https://arxiv.org/abs/2403.12945" class="pub-item">
-      <img src="images/projects/droid.jpg" alt="">
-      <span class="pub-info">DROID<span class="venue">RSS 2024</span></span>
-    </a>
-    <a href="https://arxiv.org/abs/2309.00082" class="pub-item">
-      <img src="images/projects/repo.jpg" alt="">
-      <span class="pub-info">RePo<span class="venue">NeurIPS 2023 spotlight</span></span>
-    </a>
-    <a href="https://arxiv.org/abs/2302.06671" class="pub-item">
-      <img src="images/projects/genaug.jpg" alt="">
-      <span class="pub-info">GenAug<span class="venue">RSS 2023 best paper finalist</span></span>
-    </a>
-    <a href="https://arxiv.org/abs/1802.06070" class="pub-item">
-      <img src="images/projects/diayn.jpg" alt="">
-      <span class="pub-info">Diversity is All You Need<span class="venue">ICLR 2019</span></span>
-    </a>
-    <button class="all-pubs-link" onclick="openPubPanel()">All publications →</button>
-  </aside>
-
-  <!-- Publications slide-out panel -->
-  <div class="pub-panel-overlay" onclick="closePubPanel()"></div>
-  <div class="pub-panel">
-    <div class="pub-panel-header">
-      <h2>Publications</h2>
-      <button class="pub-panel-close" onclick="closePubPanel()">×</button>
-    </div>
-    <div class="pub-panel-content">
-      <p class="pub-panel-sub">Full list on <a href="https://scholar.google.com/citations?user=E8FzBpQAAAAJ">Google Scholar</a></p>
-
-      <div class="pub-year">
-        <h3>2025</h3>
-        <div class="pub">
-          <a href="https://arxiv.org/abs/2506.15799">Steering Your Diffusion Policy with Latent Space RL</a>
-          <span class="venue">CoRL (oral, best paper nominee)</span>
-        </div>
-        <div class="pub">
-          <a href="https://arxiv.org/abs/2504.02792">Unified World Models</a>
-          <span class="venue">RSS (best paper)</span>
-        </div>
-        <div class="pub">
-          <a href="https://arxiv.org/abs/2506.18123">RoboArena</a>
-          <span class="venue">CoRL (oral)</span>
-        </div>
-        <div class="pub">
-          <a href="https://arxiv.org/abs/2503.04538">SRSA: Skill Retrieval for Assembly</a>
-          <span class="venue">ICLR (spotlight)</span>
-        </div>
-        <div class="pub">
-          <a href="https://hamster-robot.github.io/">HAMSTER</a>
-          <span class="venue">ICLR</span>
-        </div>
-        <div class="pub">
-          <a href="https://weirdlabuw.github.io/sgft/">Simulation-Guided Fine-Tuning</a>
-          <span class="venue">ICLR</span>
-        </div>
-        <div class="pub">
-          <a href="https://weirdlabuw.github.io/strap/">STRAP</a>
-          <span class="venue">ICLR</span>
-        </div>
-        <div class="pub">
-          <a href="https://drawer-art.github.io/">DRAWER</a>
-          <span class="venue">CVPR</span>
-        </div>
-      </div>
-
-      <div class="pub-year">
-        <h3>2024</h3>
-        <div class="pub">
-          <a href="https://arxiv.org/abs/2408.10075">Personalizing RLHF with Variational Preference Learning</a>
-          <span class="venue">NeurIPS (spotlight)</span>
-        </div>
-        <div class="pub">
-          <a href="https://arxiv.org/abs/2403.12945">DROID</a>
-          <span class="venue">RSS</span>
-        </div>
-        <div class="pub">
-          <a href="https://arxiv.org/abs/2403.03949">Real-to-Sim-to-Real</a>
-          <span class="venue">RSS</span>
-        </div>
-        <div class="pub">
-          <a href="https://arxiv.org/abs/2405.11656">URDFormer</a>
-          <span class="venue">RSS</span>
-        </div>
-        <div class="pub">
-          <a href="https://weirdlabuw.github.io/asid/">ASID</a>
-          <span class="venue">ICLR</span>
-        </div>
-        <div class="pub">
-          <a href="https://arxiv.org/abs/2401.16013">SERL</a>
-          <span class="venue">ICRA</span>
-        </div>
-      </div>
-
-      <div class="pub-year">
-        <h3>2023</h3>
-        <div class="pub">
-          <a href="https://arxiv.org/abs/2309.00082">RePo</a>
-          <span class="venue">NeurIPS (spotlight)</span>
-        </div>
-        <div class="pub">
-          <a href="https://arxiv.org/abs/2302.06671">GenAug</a>
-          <span class="venue">RSS (best paper finalist)</span>
-        </div>
-        <div class="pub">
-          <a href="https://arxiv.org/abs/2309.03322">REBOOT</a>
-          <span class="venue">CoRL</span>
-        </div>
-        <div class="pub">
-          <a href="https://arxiv.org/abs/2302.06692">LLM-guided RL Pretraining</a>
-          <span class="venue">ICML</span>
-        </div>
-      </div>
-
-      <div class="pub-year">
-        <h3>Older</h3>
-        <div class="pub">
-          <a href="https://arxiv.org/abs/1912.06088">Iterated Supervised Learning for Goal Reaching</a>
-          <span class="venue">ICLR 2021 (oral)</span>
-        </div>
-        <div class="pub">
-          <a href="https://arxiv.org/abs/2004.12570">Ingredients of Real-World Robotic RL</a>
-          <span class="venue">ICLR 2020 (spotlight)</span>
-        </div>
-        <div class="pub">
-          <a href="https://arxiv.org/abs/1802.06070">Diversity is All You Need</a>
-          <span class="venue">ICLR 2019</span>
-        </div>
-        <div class="pub">
-          <a href="https://arxiv.org/abs/1709.10087">Dexterous Manipulation with RL + Demos</a>
-          <span class="venue">RSS 2018</span>
-        </div>
-      </div>
-    </div>
-  </div>
+  <aside class="pub-sidebar-left" id="pub-sidebar"></aside>
 
   <main>
     <h1>WEIRD Lab</h1>
@@ -185,6 +32,7 @@
       <p><strong>Postdocs:</strong> Email <a href="mailto:abhgupta@cs.washington.edu">abhgupta@cs.washington.edu</a> with your CV.</p>
       <p><strong>UW students:</strong> <a href="https://docs.google.com/forms/d/e/1FAIpQLSdw8wk6oltiC0uFh1rnm36FyvXtbIssds3PjROrLOYGQmteAw/viewform">Fill out this form</a>. We only work with current UW students.</p>
       <p><strong>Location:</strong> Bill & Melinda Gates Hall, 3800 E Stevens Way NE, Seattle WA 98195</p>
+      <p><strong>Lab tours:</strong> We host tours for students and visitors in Seattle. <a href="mailto:abhgupta@cs.washington.edu">Email us</a> to schedule with details of your visit and group.</p>
     </div>
 
     <footer>
@@ -245,7 +93,7 @@
         <span>Eric Cai</span>
       </a>
       <a href="https://arhanjain.github.io/" class="person-row">
-        <img src="images/people/arhan.png" alt="Arhan Jain">
+        <img src="images/people/arhan.jpg" alt="Arhan Jain">
         <span>Arhan Jain</span>
       </a>
       <div class="person-row">
@@ -265,7 +113,7 @@
         <span>Shubham Mittal</span>
       </div>
       <div class="person-row">
-        <img src="images/people/aditya.png" alt="Aditya Shah">
+        <img src="images/people/aditya.jpg" alt="Aditya Shah">
         <span>Aditya Shah</span>
       </div>
       <a href="https://cleahwin.github.io/" class="person-row">
@@ -281,7 +129,7 @@
         <span>Joshua Tran</span>
       </div>
       <a href="https://teeg.org/" class="person-row">
-        <img src="images/people/pranav.png" alt="Pranav Teegavarapu">
+        <img src="images/people/pranav.jpg" alt="Pranav Teegavarapu">
         <span>Pranav Teegavarapu</span>
       </a>
       <a href="https://quinnmp.github.io/" class="person-row">
@@ -289,7 +137,7 @@
         <span>Quinn Pfeifer</span>
       </a>
       <a href="https://raymondyu5.github.io/" class="person-row">
-        <img src="images/people/raymond.png" alt="Raymond Yu">
+        <img src="images/people/raymond.jpg" alt="Raymond Yu">
         <span>Raymond Yu</span>
       </a>
       <div class="person-row">
@@ -301,7 +149,7 @@
         <span>Sidharth Rajagopal</span>
       </div>
       <div class="person-row">
-        <img src="images/people/walyag.png" alt="Waleed Yagoub">
+        <img src="images/people/walyag.jpg" alt="Waleed Yagoub">
         <span>Waleed Yagoub</span>
       </div>
       <div class="person-row">
@@ -313,6 +161,15 @@
 </div>
 
 <script>
+// Load components
+fetch('components/pub-sidebar.html')
+  .then(r => r.text())
+  .then(html => document.getElementById('pub-sidebar').innerHTML = html);
+
+fetch('components/pub-panel.html')
+  .then(r => r.text())
+  .then(html => document.getElementById('pub-panel-container').innerHTML = html);
+
 function openPubPanel() {
   document.querySelector('.pub-panel').classList.add('active');
   document.querySelector('.pub-panel-overlay').classList.add('active');
