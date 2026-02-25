@@ -90,12 +90,18 @@ a:hover {
     display: none;
   }
 
-  h1 {
-    font-size: 1.8rem;
+  .main-header {
+    flex-direction: column;
   }
 
   .site-logo {
-    width: 56px;
+    width: 60px;
+    align-self: flex-start;
+    order: -1;
+  }
+
+  h1 {
+    font-size: 1.8rem;
   }
 
   .intro {
