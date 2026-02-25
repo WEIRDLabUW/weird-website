@@ -27,5 +27,4 @@ jobs:
           ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
             cd /cse/web/research/weirdlab/
             git pull origin main
-            chmod -R a+rX .
           EOF
