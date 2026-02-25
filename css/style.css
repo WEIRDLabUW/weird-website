@@ -94,6 +94,10 @@ a:hover {
     font-size: 1.8rem;
   }
 
+  .site-logo {
+    width: 56px;
+  }
+
   .intro {
     font-size: 1rem;
   }
@@ -118,6 +122,20 @@ main {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+}
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.site-logo {
+  width: 140px;
+  height: auto;
+  flex-shrink: 0;
 }
 
 h1 {
