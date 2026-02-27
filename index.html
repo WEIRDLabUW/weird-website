@@ -29,7 +29,11 @@
       We are affiliated with <a href="https://robotics.cs.washington.edu/">UW Robotics</a> and the <a href="https://www.cs.washington.edu">Paul G. Allen School for Computer Science and Engineering</a> at the University of Washington.
 
     </p>
-    <img src="images/lab_photo.jpg" alt="The lab" class="lab-photo">
+    <div class="carousel">
+      <img src="images/lab_photo.jpg" alt="The lab" class="lab-photo">
+      <img src="images/lab_photo_2.jpg" alt="Lab dinner" class="lab-photo">
+      <div class="carousel-dots"></div>
+    </div>
 
     <footer>
       <a href="https://github.com/WEIRDLabUW">github</a>
@@ -208,20 +212,38 @@ const papers = [
 
 const pubSidebar = document.getElementById('pub-sidebar');
 let activeFilter = null;
+let showAll = false;
 
 function renderPubs(filter) {
-  const heading = pubSidebar.querySelector('h3') || document.createElement('h3');
   const filtered = (filter
     ? papers.filter(p => p.authors.includes(filter))
-    : papers.filter(p => p.selected)
+    : showAll ? papers : papers.filter(p => p.selected)
   ).sort((a, b) => b.year - a.year);
 
   const personRow = filter && document.querySelector(`[data-person="${filter}"]`);
   const personName = personRow ? personRow.querySelector('span').textContent : '';
 
-  heading.textContent = filter ? personName : 'Selected Papers';
   pubSidebar.innerHTML = '';
-  pubSidebar.appendChild(heading);
+
+  if (filter) {
+    const heading = document.createElement('h3');
+    heading.textContent = personName;
+    pubSidebar.appendChild(heading);
+  } else {
+    const toggle = document.createElement('div');
+    toggle.className = 'pub-toggle';
+    toggle.innerHTML =
+      '<button class="pub-toggle-btn' + (!showAll ? ' active' : '') + '" data-mode="selected">Selected</button>' +
+      '<span class="pub-toggle-sep">|</span>' +
+      '<button class="pub-toggle-btn' + (showAll ? ' active' : '') + '" data-mode="all">All Papers</button>';
+    toggle.addEventListener('click', function(e) {
+      const btn = e.target.closest('[data-mode]');
+      if (!btn) return;
+      showAll = btn.dataset.mode === 'all';
+      renderPubs(null);
+    });
+    pubSidebar.appendChild(toggle);
+  }
 
   filtered.forEach((p, i) => {
     const a = document.createElement('a');
@@ -290,6 +312,150 @@ document.addEventListener('keydown', function(e) {
     document.querySelector('.contact-tab').classList.remove('active');
   }
 });
+
+// Carousel
+(function() {
+  const carousel = document.querySelector('.carousel');
+  const slides = Array.from(carousel.querySelectorAll('.lab-photo'));
+  const dotsContainer = document.querySelector('.carousel-dots');
+  const count = slides.length;
+  let current = 0;
+  let autoTimer;
+  let animating = false;
+
+  // All slides start off-screen to the right, except the first
+  slides.forEach((s, i) => {
+    s.style.transform = i === 0 ? 'translateX(0)' : 'translateX(100%)';
+  });
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => { goTo(i); resetAuto(); });
+    dotsContainer.appendChild(dot);
+  });
+
+  function updateDots() {
+    dotsContainer.querySelectorAll('.carousel-dot').forEach((d, i) =>
+      d.classList.toggle('active', i === current));
+  }
+
+  function goTo(index, direction) {
+    if (animating || index === current) return;
+    animating = true;
+    const next = ((index % count) + count) % count;
+    const dir = direction || (next > current ? 1 : -1);
+    const leaving = slides[current];
+    const entering = slides[next];
+
+    // Place entering slide off-screen in the direction we're sliding from
+    entering.style.transition = 'none';
+    entering.style.transform = 'translateX(' + (dir * 100) + '%)';
+    entering.offsetHeight; // reflow
+
+    // Animate both
+    entering.style.transition = '';
+    entering.style.transform = 'translateX(0)';
+    leaving.style.transform = 'translateX(' + (-dir * 100) + '%)';
+
+    current = next;
+    updateDots();
+
+    leaving.addEventListener('transitionend', function handler() {
+      leaving.removeEventListener('transitionend', handler);
+      animating = false;
+    });
+    // Fallback in case transitionend doesn't fire
+    setTimeout(() => { animating = false; }, 500);
+  }
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => goTo((current + 1) % count, 1), 5000);
+  }
+  resetAuto();
+
+  // Drag / swipe
+  let startX = 0, dragX = 0, dragging = false, dragOther = -1, dragDir = 0;
+
+  function onStart(e) {
+    if (animating) return;
+    dragging = true;
+    startX = (e.touches ? e.touches[0] : e).clientX;
+    dragX = 0;
+    dragDir = 0;
+    dragOther = -1;
+    slides[current].style.transition = 'none';
+  }
+
+  function onMove(e) {
+    if (!dragging) return;
+    dragX = (e.touches ? e.touches[0] : e).clientX - startX;
+    const pct = (dragX / carousel.offsetWidth) * 100;
+    const newDir = dragX < 0 ? 1 : -1; // 1 = sliding left (next), -1 = sliding right (prev)
+
+    // When drag direction changes, reposition the companion slide
+    if (newDir !== dragDir) {
+      dragDir = newDir;
+      const other = dragDir === 1
+        ? (current + 1) % count
+        : (current - 1 + count) % count;
+      if (dragOther >= 0 && dragOther !== other) {
+        slides[dragOther].style.transition = 'none';
+        slides[dragOther].style.transform = 'translateX(100%)';
+      }
+      dragOther = other;
+      slides[dragOther].style.transition = 'none';
+      slides[dragOther].style.transform = dragDir === 1 ? 'translateX(100%)' : 'translateX(-100%)';
+      slides[dragOther].offsetHeight;
+    }
+
+    slides[current].style.transform = 'translateX(' + pct + '%)';
+    if (dragOther >= 0) {
+      const otherBase = dragDir === 1 ? 100 : -100;
+      slides[dragOther].style.transform = 'translateX(' + (otherBase + pct) + '%)';
+    }
+  }
+
+  function onEnd() {
+    if (!dragging) return;
+    dragging = false;
+    const threshold = carousel.offsetWidth * 0.2;
+
+    slides[current].style.transition = '';
+    if (dragOther >= 0) slides[dragOther].style.transition = '';
+
+    if (dragX < -threshold && dragOther >= 0) {
+      // Swiped left → show next
+      slides[current].style.transform = 'translateX(-100%)';
+      slides[dragOther].style.transform = 'translateX(0)';
+      current = dragOther;
+    } else if (dragX > threshold && dragOther >= 0) {
+      // Swiped right → show prev
+      slides[current].style.transform = 'translateX(100%)';
+      slides[dragOther].style.transform = 'translateX(0)';
+      current = dragOther;
+    } else {
+      // Snap back
+      slides[current].style.transform = 'translateX(0)';
+      if (dragOther >= 0) {
+        const otherBase = dragDir === 1 ? 100 : -100;
+        slides[dragOther].style.transform = 'translateX(' + otherBase + '%)';
+      }
+    }
+    dragOther = -1;
+    dragDir = 0;
+    updateDots();
+    resetAuto();
+  }
+
+  carousel.addEventListener('mousedown', onStart);
+  window.addEventListener('mousemove', onMove);
+  window.addEventListener('mouseup', onEnd);
+  carousel.addEventListener('touchstart', onStart, { passive: true });
+  window.addEventListener('touchmove', onMove, { passive: true });
+  window.addEventListener('touchend', onEnd);
+})();
 </script>
 
 </body>
