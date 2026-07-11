@@ -25,5 +25,5 @@ jobs:
 
       - name: Deploy to server
         run: |
-          ssh -o BatchMode=yes -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+          ssh -tt -o BatchMode=yes -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
             "cd /cse/web/research/weirdlab/ && git pull origin main && sed -i \"s/CACHE_BUST/$(date +%s)/g\" index.html"
