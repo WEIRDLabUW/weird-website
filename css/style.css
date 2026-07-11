@@ -323,6 +323,19 @@ p {
   font-size: 1rem;
 }
 
+.alumni-row {
+  gap: 0.35rem;
+}
+
+.alumni-row .person-arrow {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.alumni-row .person-destination {
+  font-size: 0.88rem;
+}
+
 /* publications sidebar (right, on publications page) */
 .pub-sidebar {
   position: sticky;
