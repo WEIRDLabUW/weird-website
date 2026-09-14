@@ -129,6 +129,10 @@
         <img src="images/people/daniel.jpeg" alt="Daniel Gorbatov">
         <span>Daniel Gorbatov</span>
       </div>
+      <div class="person-row" data-person="ignacio">
+        <img src="images/people/ignacio.jpg" alt="Ignacio Dagnino">
+        <span>Ignacio Dagnino</span>
+      </div>
       <div class="person-row" data-person="joshua">
         <img src="images/people/joshua.jpeg" alt="Joshua Tran">
         <span>Joshua Tran</span>
@@ -190,6 +194,10 @@ const papers = [
   // year: used for sorting (newest first). Use 9999 for unpublished/under review.
   // authors: keys matching data-person attributes (e.g. "arhan", "marius").
   // selected: False (let abhishek decide the representative papers); all of a person's papers show on hover.
+  { title: "SGS: A Balanced Data Diet: Addressing the Bottleneck in Mega-Scale RL for Robot Control", url: "https://sgs-rl.github.io/", venue: "CoRL 2026", year: 2026, selected: false,
+    authors: ["abhishek", "mateo", "patrick", "ignacio"] },
+  { title: "SimDist: Simulation Distillation: Pretraining World Models in Simulation for Rapid Real-World Adaptation", url: "https://sim-dist.github.io/", venue: "RSS 2026", year: 2026, selected: false,
+    authors: ["abhishek", "patrick", "tyler"] },
   { title: "Latent Memory Palace: Reasoning for Control as Autoregressive Variational Inference", url: "https://weirdlabuw.github.io/lmp/", venue: "Under Review", year: 2026, selected: true,
     authors: ["abhishek", "chuning"] },
   { title: "Distributional Successor Features Enable Zero-Shot Policy Optimization", url: "https://weirdlabuw.github.io/dispo/", venue: "NeurIPS 2024", year: 2024, selected: true,
@@ -211,7 +219,7 @@ const papers = [
   { title: "PEEK: Guiding and Minimal Image Representations for Zero-Shot Generalization of Robot Manipulation Policies", url: "https://peek-robot.github.io/", venue: "ICRA 2026", year: 2026, selected: false,
     authors: ["abhishek", "jesse", "marius"] },
   { title: "OmniReset: Emergent Dexterity via Diverse Resets and Large-Scale Reinforcement Learning", url: "https://weirdlabuw.github.io/omnireset/", venue: "ICLR 2026", year: 2026, selected: true,
-    authors: ["abhishek", "patrick", "tyler", "joshua"] },
+    authors: ["abhishek", "patrick", "tyler", "joshua", "ignacio"] },
   { title: "DARP: Difference-Aware Retrieval Policies for Imitation Learning", url: "https://weirdlabuw.github.io/darp-site/", venue: "ICLR 2026", year: 2026, selected: false,
     authors: ["abhishek", "quinn"] },
   { title: "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets", url: "https://weirdlabuw.github.io/uwm/", venue: "RSS 2025 · ICML 2025 Workshop Best Paper", year: 2025, selected: true,
