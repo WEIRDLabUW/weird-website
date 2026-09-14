@@ -319,12 +319,6 @@ p {
   object-fit: cover;
 }
 
-.person-photo-placeholder {
-  width: 41px;
-  height: 41px;
-  flex-shrink: 0;
-}
-
 .person-row span {
   font-size: 1rem;
 }
